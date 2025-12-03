@@ -1,0 +1,10 @@
+# Ignore the vector database folder
+chroma_db/
+chroma_db_data/
+__pycache__/
+
+# Ignore environment variables (if you have an API key here)
+.env
+
+# Ignore PyCharm settings
+.idea/
