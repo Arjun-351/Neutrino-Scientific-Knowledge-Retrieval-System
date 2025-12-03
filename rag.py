@@ -42,7 +42,6 @@ def initialize_components():
 
 
 
-# Define where to save the database
 PERSIST_DIRECTORY = "chroma_db"
 
 
@@ -54,26 +53,26 @@ def get_smart_loader(urls):
 
     for url in urls:
         try:
-            # Case 1: Local HTML File (Jo tumne save kiya)
+            #For Local Website
             if url.endswith(".html") or url.endswith(".htm"):
-                print(f"🏠 Loading Local HTML: {url}")
+                print(f"Loading Local HTML: {url}")
                 loader = BSHTMLLoader(url, open_encoding="utf-8") # Encoding fix added
                 documents.extend(loader.load())
 
-            # Case 2: PDF (Agar future me chahiye ho)
+            #For Pdf
             elif url.endswith(".pdf"):
-                print(f"📄 Loading PDF: {url}")
+                print(f"Loading PDF: {url}")
                 loader = PDFPlumberLoader(url)
                 documents.extend(loader.load())
 
-            # Case 3: Live Website (Ye blocked sites par fail hoga)
+            #For Live Web Pages
             else:
-                print(f"🌐 Loading Web Page: {url}")
+                print(f"Loading Web Page: {url}")
                 loader = WebBaseLoader(url, header_template=headers)
                 documents.extend(loader.load())
 
         except Exception as e:
-            print(f"❌ Error loading {url}: {e}")
+            print(f"Error loading {url}: {e}")
 
     return documents
 
@@ -111,8 +110,8 @@ def generate_answer(query):
 
 
 if __name__=="__main__":
-    urls=["https://www.aajtak.in/uttar-pradesh/story/lucknow-fsda-action-on-7-malls-lulu-hypermarket-and-kfc-closed-lcly-rpti-2402140-2025-12-03"]
+    urls=["https://openlab.cern/cern-openlab-summer-student-programme/"]
 
     process_urls(urls)
-    answer=generate_answer("How many teams did the raid?")
+    answer=generate_answer("Who can apply for cern summer program?")
     print(f"Answer: {answer}")
